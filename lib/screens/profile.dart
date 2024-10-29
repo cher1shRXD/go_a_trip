@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_a_trip/components/header.dart';
+import 'package:go_a_trip/screens/login.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    const tokenStore = FlutterSecureStorage();
+
+    void clearToken() async {
+      await tokenStore.delete(key: 'accessToken');
+      await tokenStore.delete(key: 'refreshToken');
+    }
+
     return SafeArea(
         child: Column(children: [
       const Header(title: 'Profile'),
@@ -21,6 +30,18 @@ class ProfileScreen extends StatelessWidget {
                 'Profile Screen',
                 style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
+              Padding(
+                padding: const EdgeInsets.all(16),
+                child: ElevatedButton(
+                    onPressed: () {
+                      clearToken();
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const LoginScreen()));
+                    },
+                    child: const Text('로그아웃')),
+              )
             ],
           ),
         ),

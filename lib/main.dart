@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_a_trip/components/navigation.dart';
+import 'package:go_a_trip/screens/initial_route.dart';
 
 void main() {
   runApp(const MyApp());
@@ -32,6 +32,6 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    return const BottomNavigation();
+    return const InitialRoute();
   }
 }

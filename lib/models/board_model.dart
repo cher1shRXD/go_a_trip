@@ -7,8 +7,8 @@ class Board {
   final String createdAt;
   final String category;
   final int likesCount;
-  final Author author;
-  final List<dynamic> likes;
+  final User author;
+  final List<User> likes;
 
   Board({
     required this.id,
@@ -29,8 +29,8 @@ class Board {
       createdAt: json['createdAt'] as String,
       category: json['category'] as String,
       likesCount: json['likesCount'] as int,
-      author: Author.fromJson(json['author'] as Map<String, dynamic>),
-      likes: json['likes'] as List<dynamic>,
+      author: User.fromJson(json['author'] as Map<String, dynamic>),
+      likes: json['likes'] as List<User>,
     );
   }
 

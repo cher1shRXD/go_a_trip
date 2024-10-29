@@ -6,8 +6,8 @@ import 'package:go_a_trip/screens/tickets.dart';
 import 'package:go_a_trip/screens/home.dart';
 import 'package:go_a_trip/screens/airport.dart';
 
-class BottomNavigation extends StatelessWidget {
-  const BottomNavigation({super.key});
+class Navigation extends StatelessWidget {
+  const Navigation({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,18 +17,19 @@ class BottomNavigation extends StatelessWidget {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           border: Border(
-              top: BorderSide(
-                color: Colors.grey[200]!,
-                width: 1,
-              ),
-              left: BorderSide(
-                color: Colors.grey[200]!,
-                width: 1,
-              ),
-              right: BorderSide(
-                color: Colors.grey[200]!,
-                width: 1,
-              )),
+            top: BorderSide(
+              color: Colors.grey[300]!,
+              width: 1,
+            ),
+            left: BorderSide(
+              color: Colors.grey[300]!,
+              width: 1,
+            ),
+            right: BorderSide(
+              color: Colors.grey[300]!,
+              width: 1,
+            ),
+          ),
           borderRadius: const BorderRadius.only(
             topLeft: Radius.circular(32),
             topRight: Radius.circular(32),

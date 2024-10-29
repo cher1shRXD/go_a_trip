@@ -1,14 +1,14 @@
-class Author {
+class User {
   final int id;
   final String username;
 
-  Author({
+  User({
     required this.id,
     required this.username,
   });
 
-  factory Author.fromJson(Map<String, dynamic> json) {
-    return Author(
+  factory User.fromJson(Map<String, dynamic> json) {
+    return User(
       id: json['id'] as int,
       username: json['username'] as String,
     );

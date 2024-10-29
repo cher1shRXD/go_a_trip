@@ -7,6 +7,7 @@ plugins {
 
 android {
     namespace = "com.example.go_a_trip"
+    compileSdkVersion = 33
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
@@ -28,6 +29,8 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutter.versionCode
         versionName = flutter.versionName
+        minSdkVersion = 18  // Ensure this is at least 18 for flutter_secure_storage
+        targetSdkVersion flutter.targetSdkVersion
     }
 
     buildTypes {
