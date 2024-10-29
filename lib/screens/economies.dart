@@ -8,7 +8,7 @@ class EconomiesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Column(children: [
-      const Header(title: 'Economies'),
+      const Header(title: '결제'),
       Container(
         color: Colors.transparent,
         child: Center(

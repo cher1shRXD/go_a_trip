@@ -17,7 +17,7 @@ class ProfileScreen extends StatelessWidget {
 
     return SafeArea(
         child: Column(children: [
-      const Header(title: 'Profile'),
+      const Header(title: '프로필'),
       Container(
         color: Colors.transparent,
         child: Center(

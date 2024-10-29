@@ -11,7 +11,7 @@ class LoginScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Header(title: 'Login'),
+            Header(title: '로그인'),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: LoginForm(),

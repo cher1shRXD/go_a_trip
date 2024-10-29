@@ -62,27 +62,27 @@ class Navigation extends StatelessWidget {
                     NavigationDestination(
                       icon: Icon(Icons.local_airport_outlined, size: 24),
                       selectedIcon: Icon(Icons.local_airport, size: 28),
-                      label: 'Airports',
+                      label: '공항',
                     ),
                     NavigationDestination(
                       icon: Icon(Icons.airplane_ticket_outlined, size: 24),
                       selectedIcon: Icon(Icons.airplane_ticket, size: 28),
-                      label: 'Tickets',
+                      label: '항공권',
                     ),
                     NavigationDestination(
                       icon: Icon(Icons.home_outlined, size: 24),
                       selectedIcon: Icon(Icons.home, size: 28),
-                      label: 'Home',
+                      label: '홈',
                     ),
                     NavigationDestination(
                       icon: Icon(Icons.wallet_outlined, size: 24),
                       selectedIcon: Icon(Icons.wallet, size: 28),
-                      label: 'Economies',
+                      label: '결제',
                     ),
                     NavigationDestination(
                       icon: Icon(Icons.person_outline, size: 24),
                       selectedIcon: Icon(Icons.person, size: 28),
-                      label: 'Profile',
+                      label: '프로필',
                     ),
                   ],
                 ),

@@ -8,7 +8,7 @@ class TicketsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
         child: Column(children: [
-      const Header(title: 'Tickets'),
+      const Header(title: '티켓'),
       Container(
         color: Colors.transparent,
         child: Center(

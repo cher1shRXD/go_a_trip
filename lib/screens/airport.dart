@@ -9,7 +9,7 @@ class AirportScreen extends StatelessWidget {
     return SafeArea(
       child: Column(
         children: [
-          const Header(title: 'Airports'),
+          const Header(title: '공항'),
           Container(
             color: Colors.transparent,
             child: Center(

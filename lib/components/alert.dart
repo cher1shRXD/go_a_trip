@@ -13,7 +13,7 @@ void alert(BuildContext context, String message, String type) async {
           child: ListBody(children: [
             Row(children: [
               Container(
-                margin: const EdgeInsets.only(top: 16, bottom: 16),
+                margin: const EdgeInsets.only(bottom: 16),
                 child: Icon(
                   type == 'ERROR'
                       ? Icons.error
