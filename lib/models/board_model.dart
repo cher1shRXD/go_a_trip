@@ -8,7 +8,7 @@ class Board {
   final String category;
   final int likesCount;
   final User author;
-  final List<User> likes;
+  final List<dynamic> likes;
 
   Board({
     required this.id,
@@ -30,7 +30,7 @@ class Board {
       category: json['category'] as String,
       likesCount: json['likesCount'] as int,
       author: User.fromJson(json['author'] as Map<String, dynamic>),
-      likes: json['likes'] as List<User>,
+      likes: json['likes'] as List<dynamic>,
     );
   }
 

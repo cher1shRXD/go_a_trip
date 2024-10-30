@@ -12,7 +12,7 @@ class SearchScreen extends StatefulWidget {
 
 class _SearchScreenState extends State<SearchScreen> {
   final TextEditingController _searchTextController = TextEditingController();
-  bool isLoading = false; // State 클래스의 멤버 변수로 이동
+  bool isLoading = false;
 
   Widget _buildTextField({
     required TextEditingController controller,
@@ -20,7 +20,6 @@ class _SearchScreenState extends State<SearchScreen> {
   }) {
     void onSearch() {
       setState(() {
-        // setState를 사용하여 상태 업데이트
         isLoading = true;
       });
 
@@ -28,7 +27,6 @@ class _SearchScreenState extends State<SearchScreen> {
 
       Future.delayed(const Duration(seconds: 1), () {
         setState(() {
-          // setState를 사용하여 상태 업데이트
           isLoading = false;
         });
       });
@@ -37,7 +35,7 @@ class _SearchScreenState extends State<SearchScreen> {
     return Container(
       width: double.infinity,
       height: 40,
-      margin: const EdgeInsets.all(16),
+      margin: const EdgeInsets.all(12),
       decoration: BoxDecoration(
         color: Colors.grey[200]!,
         borderRadius: const BorderRadius.all(Radius.circular(12)),
@@ -71,26 +69,26 @@ class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: GestureDetector(
-        onTap: () {
-          FocusManager.instance.primaryFocus?.unfocus();
-        },
-        child: Column(children: [
-          Container(
-            color: Colors.transparent,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _buildTextField(
-                      controller: _searchTextController,
-                      placeholder: '어디로 가고 싶으신가요?')
-                ],
-              ),
+      child: Column(children: [
+        Container(
+          color: Colors.transparent,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildTextField(
+                    controller: _searchTextController,
+                    placeholder: '어디로 가고 싶으신가요?')
+              ],
             ),
           ),
-        ]),
-      ),
+        ),
+        Expanded(child: GestureDetector(
+          onTap: () {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+        ))
+      ]),
     );
   }
 }

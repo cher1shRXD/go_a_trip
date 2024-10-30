@@ -130,10 +130,7 @@ class _LoginFormState extends State<LoginForm> {
             borderRadius: const BorderRadius.all(Radius.circular(8)),
             color: _isLoading ? Colors.grey[200] : Colors.grey[300],
           ),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
-            vertical: 12,
-          ),
+          padding: const EdgeInsets.all(12),
           child: Center(
             child: _isLoading
                 ? const CupertinoActivityIndicator()
