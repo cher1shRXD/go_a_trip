@@ -21,7 +21,6 @@ class GetBoardService {
         final List<Board> decodedData = (jsonDecode(response.body) as List)
             .map((item) => Board.fromJson(item as Map<String, dynamic>))
             .toList();
-        log(response.body);
         return decodedData;
       } else {
         throw HttpException('Failed to login. Status: ${response.statusCode}');

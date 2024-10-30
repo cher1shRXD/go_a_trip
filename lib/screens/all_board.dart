@@ -1,7 +1,7 @@
 import 'dart:developer';
-import 'package:flutter/material.dart';
+import 'dart:io';
 import 'package:flutter/cupertino.dart';
-import 'dart:io' show Platform;
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:go_a_trip/components/board_item.dart';
 import 'package:go_a_trip/components/header.dart';
@@ -9,14 +9,14 @@ import 'package:go_a_trip/components/navigation.dart';
 import 'package:go_a_trip/models/board_model.dart';
 import 'package:go_a_trip/services/board/get_board_list.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class AllBoardScreen extends StatefulWidget {
+  const AllBoardScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<AllBoardScreen> createState() => _AllBoardScreen();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _AllBoardScreen extends State<AllBoardScreen> {
   bool _isLoading = false;
   String? _error;
   List<Board> _boards = [];
@@ -39,8 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
       final boards = await instance.boardListRequest();
       log('Fetched ${boards.length} boards');
       setState(() {
-        _boards = boards.sublist(0, 10);
-        boards.shuffle();
+        _boards = boards;
       });
     } catch (e) {
       log('Error in _loadBoards: $e');
@@ -82,37 +81,6 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  Widget _buildSearchBar() {
-    return GestureDetector(
-      onTap: () => controller.selectedIndex.value = 3,
-      child: Container(
-        width: double.infinity,
-        height: 40,
-        margin: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(Radius.circular(12)),
-          color: Colors.grey[200]!,
-        ),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                '무엇이 궁금하신가요?',
-                style: TextStyle(color: Colors.grey[500], fontSize: 12),
-              ),
-              Icon(
-                Icons.search,
-                color: Colors.grey[500],
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildBoardList() {
     if (_error != null) {
       return Center(
@@ -147,20 +115,9 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildSubTitle() {
-    return const Padding(
-        padding: EdgeInsets.only(left: 12, right: 12, top: 8, bottom: 4),
-        child: Text(
-          '오늘의 추천글',
-          style: TextStyle(fontSize: 20),
-        ));
-  }
-
   @override
   Widget build(BuildContext context) {
-    List<Widget> listItems = [
-      _buildSearchBar(),
-      _buildSubTitle(),
+    List<Widget> listItem = [
       _buildBoardList(),
     ];
 
@@ -168,9 +125,9 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         body: Column(
           children: [
-            const Header(title: 'GAON mobile'),
+            const Header(title: '전체 글'),
             Expanded(
-              child: _buildRefreshIndicator(listItems),
+              child: _buildRefreshIndicator(listItem),
             ),
           ],
         ),
