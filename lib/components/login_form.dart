@@ -149,21 +149,35 @@ class _LoginFormState extends State<LoginForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        _buildTextField(
-          controller: _idController,
-          placeholder: '아이디를 입력해주세요',
+    return GestureDetector(
+      onTap: () {
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
+      child: Container(
+        // Container 추가
+        color: Colors.transparent, // 투명 배경 설정
+        child: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            _buildTextField(
+              controller: _idController,
+              placeholder: '아이디를 입력해주세요',
+            ),
+            _buildTextField(
+              controller: _pwController,
+              placeholder: '비밀번호를 입력해주세요',
+              isPassword: true,
+            ),
+            const Expanded(
+              child: SizedBox(),
+            ),
+            _buildLoginButton(),
+            const SizedBox(
+              height: 12,
+            )
+          ],
         ),
-        _buildTextField(
-          controller: _pwController,
-          placeholder: '비밀번호를 입력해주세요',
-          isPassword: true,
-        ),
-        _buildLoginButton(),
-      ],
+      ),
     );
   }
 }

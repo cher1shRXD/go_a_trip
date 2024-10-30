@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:go_a_trip/screens/economies.dart';
+import 'package:go_a_trip/screens/search.dart';
 import 'package:go_a_trip/screens/profile.dart';
 import 'package:go_a_trip/screens/tickets.dart';
 import 'package:go_a_trip/screens/home.dart';
@@ -56,8 +56,7 @@ class Navigation extends StatelessWidget {
                   selectedIndex: controller.selectedIndex.value,
                   onDestinationSelected: (index) =>
                       controller.selectedIndex.value = index,
-                  labelBehavior:
-                      NavigationDestinationLabelBehavior.onlyShowSelected,
+                  labelBehavior: NavigationDestinationLabelBehavior.alwaysShow,
                   destinations: const [
                     NavigationDestination(
                       icon: Icon(Icons.local_airport_outlined, size: 24),
@@ -75,9 +74,9 @@ class Navigation extends StatelessWidget {
                       label: '홈',
                     ),
                     NavigationDestination(
-                      icon: Icon(Icons.wallet_outlined, size: 24),
-                      selectedIcon: Icon(Icons.wallet, size: 28),
-                      label: '결제',
+                      icon: Icon(Icons.search_outlined, size: 24),
+                      selectedIcon: Icon(Icons.search, size: 28),
+                      label: '검색',
                     ),
                     NavigationDestination(
                       icon: Icon(Icons.person_outline, size: 24),
@@ -103,7 +102,7 @@ class NavigateController extends GetxController {
     const AirportScreen(),
     const TicketsScreen(),
     const HomeScreen(),
-    const EconomiesScreen(),
+    const SearchScreen(),
     const ProfileScreen(),
   ];
 }
