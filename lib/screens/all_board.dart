@@ -30,6 +30,8 @@ class _AllBoardScreen extends State<AllBoardScreen> {
   }
 
   Future<void> _loadBoards() async {
+    if (!mounted) return;
+
     setState(() {
       _isLoading = true;
       _error = null;
@@ -38,15 +40,23 @@ class _AllBoardScreen extends State<AllBoardScreen> {
     try {
       final boards = await instance.boardListRequest();
       log('Fetched ${boards.length} boards');
+
+      if (!mounted) return;
+
       setState(() {
         _boards = boards;
       });
     } catch (e) {
       log('Error in _loadBoards: $e');
+
+      if (!mounted) return;
+
       setState(() {
         _error = e.toString();
       });
     } finally {
+      if (!mounted) return;
+
       setState(() {
         _isLoading = false;
       });
@@ -54,6 +64,7 @@ class _AllBoardScreen extends State<AllBoardScreen> {
   }
 
   Future<void> _onRefresh() async {
+    if (!mounted) return;
     await _loadBoards();
   }
 
@@ -65,8 +76,10 @@ class _AllBoardScreen extends State<AllBoardScreen> {
           CupertinoSliverRefreshControl(
             onRefresh: _onRefresh,
           ),
-          SliverList(
-            delegate: SliverChildListDelegate(children),
+          SliverSafeArea(
+            sliver: SliverList(
+              delegate: SliverChildListDelegate(children),
+            ),
           ),
         ],
       );
@@ -117,7 +130,12 @@ class _AllBoardScreen extends State<AllBoardScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> listItem = [
+    final listItem = [
+      if (_isLoading)
+        const Padding(
+          padding: EdgeInsets.all(8.0),
+          child: Center(child: CircularProgressIndicator()),
+        ),
       _buildBoardList(),
     ];
 
