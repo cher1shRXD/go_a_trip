@@ -21,7 +21,7 @@ class _AllBoardScreen extends State<AllBoardScreen> {
   String? _error;
   List<Board> _boards = [];
   final NavigateController controller = Get.find<NavigateController>();
-  final GetBoardService instance = GetBoardService();
+  final GetBoardListService instance = GetBoardListService();
 
   @override
   void initState() {

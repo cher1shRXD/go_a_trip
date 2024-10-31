@@ -30,7 +30,7 @@ class Board {
       category: json['category'] as String,
       likesCount: json['likesCount'] as int,
       author: User.fromJson(json['author'] as Map<String, dynamic>),
-      likes: json['likes'] as List<dynamic>,
+      likes: json['likes'] != null ? json['likes'] as List<dynamic> : [],
     );
   }
 

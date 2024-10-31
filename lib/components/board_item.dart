@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:go_a_trip/screens/board_detail.dart';
 
 class BoardItem extends StatefulWidget {
   const BoardItem(
@@ -23,6 +24,10 @@ class _BoardItemState extends State<BoardItem> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => BoardDetailScreen(id: widget.id)));
         log(widget.id.toString());
       },
       child: Container(

@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:go_a_trip/components/alert.dart';
 import 'package:go_a_trip/components/navigation.dart';
 import 'package:go_a_trip/services/auth/login_service.dart';
@@ -16,7 +15,6 @@ class _LoginFormState extends State<LoginForm> {
   final TextEditingController _idController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
   final LoginService _loginService = LoginService();
-  final _tokenStorage = const FlutterSecureStorage();
   bool _isLoading = false;
 
   @override
@@ -32,12 +30,10 @@ class _LoginFormState extends State<LoginForm> {
     setState(() => _isLoading = true);
 
     try {
-      final loginResponse = await _loginService.loginRequest(
+      await _loginService.loginRequest(
         _idController.text.trim(),
         _pwController.text.trim(),
       );
-
-      await _saveTokens(loginResponse);
 
       if (!mounted) return;
       _navigateToHome();
@@ -58,17 +54,6 @@ class _LoginFormState extends State<LoginForm> {
       return false;
     }
     return true;
-  }
-
-  Future<void> _saveTokens(dynamic loginResponse) async {
-    await _tokenStorage.write(
-      key: 'accessToken',
-      value: loginResponse.accessToken,
-    );
-    await _tokenStorage.write(
-      key: 'refreshToken',
-      value: loginResponse.refreshToken,
-    );
   }
 
   void _navigateToHome() {

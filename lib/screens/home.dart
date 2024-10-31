@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String? _error;
   List<Board> _boards = [];
   final NavigateController controller = Get.find<NavigateController>();
-  final GetBoardService instance = GetBoardService();
+  final GetBoardListService instance = GetBoardListService();
 
   @override
   void initState() {
@@ -39,8 +39,9 @@ class _HomeScreenState extends State<HomeScreen> {
       final boards = await instance.boardListRequest();
       log('Fetched ${boards.length} boards');
       setState(() {
-        _boards = boards.sublist(0, 10);
-        boards.shuffle();
+        _boards = boards;
+        _boards.shuffle();
+        _boards = _boards.sublist(0, 10);
       });
     } catch (e) {
       log('Error in _loadBoards: $e');

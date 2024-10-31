@@ -6,4 +6,8 @@ class GetToken {
   static Future<String?> getAccessToken() async {
     return await _storage.read(key: 'accessToken');
   }
+
+  static Future<String?> getRefreshToken() async {
+    return await _storage.read(key: 'refreshToken');
+  }
 }

@@ -6,10 +6,10 @@ import 'package:go_a_trip/services/common/base_url.dart';
 import 'package:go_a_trip/services/common/http_exception.dart';
 import 'package:http/http.dart' as http;
 
-class GetBoardListService {
-  Future<List<Board>> boardListRequest() async {
+class GetBoardDetailService {
+  Future<Board> boardDetailRequest(int id) async {
     try {
-      final url = Uri.parse('$baseUrl/boards');
+      final url = Uri.parse('$baseUrl/boards/$id');
       final response = await http.get(
         url,
         headers: {
@@ -18,9 +18,8 @@ class GetBoardListService {
       );
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
-        final List<Board> decodedData = (jsonDecode(response.body) as List)
-            .map((item) => Board.fromJson(item as Map<String, dynamic>))
-            .toList();
+        final Map<String, dynamic> jsonData = jsonDecode(response.body);
+        final Board decodedData = Board.fromJson(jsonData);
         return decodedData;
       } else {
         throw HttpException('Failed to login. Status: ${response.statusCode}');
