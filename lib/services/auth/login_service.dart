@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:developer';
+import 'package:go_a_trip/models/login_model.dart';
 import 'package:go_a_trip/services/auth/set_token.dart';
 import 'package:go_a_trip/services/common/base_url.dart';
 import 'package:go_a_trip/services/common/http_exception.dart';
@@ -19,7 +20,8 @@ class LoginService {
       );
 
       if (response.statusCode >= 200 && response.statusCode < 300) {
-        final decodedData = jsonDecode(response.body);
+        final Map<String, dynamic> jsonData = jsonDecode(response.body);
+        final LoginResponse decodedData = LoginResponse.fromJson(jsonData);
         log(response.body);
 
         await SetToken.setAccessToken(decodedData.accessToken);

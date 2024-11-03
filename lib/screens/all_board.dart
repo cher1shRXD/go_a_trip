@@ -55,8 +55,6 @@ class _AllBoardScreen extends State<AllBoardScreen> {
         _error = e.toString();
       });
     } finally {
-      if (!mounted) return;
-
       setState(() {
         _isLoading = false;
       });
@@ -131,11 +129,6 @@ class _AllBoardScreen extends State<AllBoardScreen> {
   @override
   Widget build(BuildContext context) {
     final listItem = [
-      if (_isLoading)
-        const Padding(
-          padding: EdgeInsets.all(8.0),
-          child: Center(child: CircularProgressIndicator()),
-        ),
       _buildBoardList(),
     ];
 
@@ -145,7 +138,9 @@ class _AllBoardScreen extends State<AllBoardScreen> {
           children: [
             const Header(title: '전체 글'),
             Expanded(
-              child: _buildRefreshIndicator(listItem),
+              child: !_isLoading
+                  ? _buildRefreshIndicator(listItem)
+                  : const Center(child: Text('로딩중...')),
             ),
           ],
         ),
